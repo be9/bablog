@@ -1,0 +1,10 @@
+extends ../layout
+
+block content
+  each post in posts
+    .post
+      h2= post.attributes.title
+      div= post.attributes.body
+
+  p
+    a(href='/posts/new') New post
