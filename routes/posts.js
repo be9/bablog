@@ -8,7 +8,7 @@ router.get('/', (req, res, next) => {
   Post.fetchAll().then(posts => {
     res.render('posts/index', { title: 'All posts', posts: posts.models });
   })
-  .catch(next);
+    .catch(next);
 });
 
 /* GET new post */

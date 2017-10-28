@@ -6,7 +6,7 @@ const Post = bookshelf.Model.extend({
   tableName: 'posts',
   hasTimestamps: true,
 
-  initialize: function() {
+  initialize() {
     this.on('saving', this.validate, this);
   },
 
@@ -15,7 +15,7 @@ const Post = bookshelf.Model.extend({
     body: ['required'],
   },
 
-  validate: function() {
+  validate() {
     if (this.attributes.title != null) {
       this.attributes.title = R.trim(this.attributes.title);
     }
