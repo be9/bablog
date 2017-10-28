@@ -2,9 +2,12 @@ extends ../layout
 
 block content
   each post in posts
-    .post
-      h2= post.attributes.title
-      div= post.attributes.body
+    .card
+      .card-body
+        h4.card-title= post.attributes.title
+        .card-text= post.attributes.body
 
-  p
-    a(href='/posts/new') New post
+block sidebar
+  ul.nav.flex-column
+    li.nav-item
+      a.nav-link(href='/posts/new') New post

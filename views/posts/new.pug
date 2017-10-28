@@ -1,4 +1,31 @@
 extends ../layout
+include ../mixins/form
 
 block content
-  p new post!
+  form(method="POST" action="/posts/create")
+    .form-group
+      label(for="post_title") Title
+      input#post_title(
+        type="text"
+        name="post_title"
+        value=post.attributes.title
+        class=inputClass('title', error))
+
+      +errorFeedback('title', error)
+
+    .form-group
+      label(for="post_body") Body
+      textarea#post_body(
+        name="post_body"
+        rows="10"
+        value=post.attributes.body
+        class=inputClass('body', error))
+
+      +errorFeedback('body', error)
+
+    button.btn.btn-primary(type="submit") Submit
+
+block sidebar
+  ul.nav.flex-column
+    li.nav-item
+      a.nav-link(href='/posts') « Back to all posts

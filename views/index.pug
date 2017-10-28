@@ -1,4 +1,11 @@
 extends layout
 
 block content
-  p Welcome to #{title}
+  p.lead Welcome to Bablog
+
+block sidebar
+  ul.nav.flex-column
+    li.nav-item
+      a.nav-link(href='/posts') See posts
+    li.nav-item
+      a.nav-link(href='/posts/new') New post

@@ -50,4 +50,9 @@ app.use((err, req, res) => {
   res.render('error');
 });
 
+app.locals.inputClass = (name, err) =>
+  (err == null || err.get(name) == null)
+    ? 'form-control'
+    : 'form-control is-invalid';
+
 module.exports = app;
