@@ -9,24 +9,24 @@
     "migrate": "knex migrate:latest"
   },
   "dependencies": {
-    "body-parser": "~1.17.1",
+    "body-parser": "1.18.x",
     "bookshelf": "^0.10.4",
     "checkit": "^0.7.0",
     "cookie-parser": "~1.4.3",
-    "debug": "~2.6.3",
-    "express": "~4.15.2",
+    "debug": "3.1.x",
+    "express": "4.16.x",
     "knex": "^0.13.0",
-    "morgan": "~1.8.1",
-    "node-sass-middleware": "0.9.8",
-    "pg": "^7.2.0",
-    "pug": "~2.0.0-beta11",
-    "ramda": "^0.24.1",
-    "serve-favicon": "~2.4.2"
+    "morgan": "1.9.x",
+    "node-sass-middleware": "0.x",
+    "pg": "7.3.x",
+    "pug": "2.0.0-rc.4",
+    "ramda": "0.25.x",
+    "serve-favicon": "2.4.x"
   },
   "devDependencies": {
-    "eslint": "^4.6.0",
-    "eslint-config-airbnb-base": "^12.0.0",
-    "eslint-plugin-import": "^2.7.0",
-    "nodemon": "^1.11.0"
+    "eslint": "4.x",
+    "eslint-config-airbnb-base": "12.x",
+    "eslint-plugin-import": "2.8.x",
+    "nodemon": "1.12.x"
   }
 }
