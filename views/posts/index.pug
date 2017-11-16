@@ -5,6 +5,7 @@ block content
     .card
       .card-body
         h4.card-title= post.attributes.title
+        .card-subtitle.timemark= post.date_created()
         .card-text= post.attributes.body
 
 block sidebar
