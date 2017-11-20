@@ -11,6 +11,9 @@ const posts = require('./routes/posts');
 
 const app = express();
 
+//set date|time locale
+moment.locale('ru');
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
