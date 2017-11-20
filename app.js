@@ -9,6 +9,8 @@ const sassMiddleware = require('node-sass-middleware');
 const index = require('./routes/index');
 const posts = require('./routes/posts');
 
+const moment = require('moment');
+
 const app = express();
 
 //set date|time locale
