@@ -13,7 +13,7 @@ const moment = require('moment');
 
 const app = express();
 
-//set date|time locale
+// set date and time locale
 moment.locale('ru');
 
 // view engine setup
@@ -56,8 +56,7 @@ app.use((err, req, res) => {
 });
 
 app.locals.inputClass = (name, err) =>
-  (err == null || err.get(name) == null)
+  ((err == null || err.get(name) == null)
     ? 'form-control'
-    : 'form-control is-invalid';
-
+    : 'form-control is-invalid');
 module.exports = app;

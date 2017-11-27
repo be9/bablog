@@ -7,18 +7,18 @@ const Post = bookshelf.Model.extend({
   tableName: 'posts',
   hasTimestamps: true,
 
-  initialize: function() {
+  initialize() {
     this.on('saving', this.validate, this);
   },
 
-  date_created: function() {
+  date_created() {
     return moment(this.attributes.created_at).format('DD MMMM YYYY, HH:mm');
   },
   validations: {
     title: ['required'],
     body: ['required']
   },
-  validate: function() {
+  validate() {
     if (this.attributes.title != null) {
       this.attributes.title = R.trim(this.attributes.title);
     }
