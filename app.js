@@ -9,7 +9,12 @@ const sassMiddleware = require('node-sass-middleware');
 const index = require('./routes/index');
 const posts = require('./routes/posts');
 
+const moment = require('moment');
+
 const app = express();
+
+// set date and time locale
+moment.locale('ru');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -51,8 +56,7 @@ app.use((err, req, res) => {
 });
 
 app.locals.inputClass = (name, err) =>
-  (err == null || err.get(name) == null)
+  ((err == null || err.get(name) == null)
     ? 'form-control'
-    : 'form-control is-invalid';
-
+    : 'form-control is-invalid');
 module.exports = app;

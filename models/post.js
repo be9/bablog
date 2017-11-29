@@ -1,6 +1,7 @@
 const R = require('ramda');
 const Checkit = require('checkit');
 const bookshelf = require('../db/bookshelf');
+const moment = require('moment');
 
 const Post = bookshelf.Model.extend({
   tableName: 'posts',
@@ -10,11 +11,13 @@ const Post = bookshelf.Model.extend({
     this.on('saving', this.validate, this);
   },
 
+  date_created() {
+    return moment(this.attributes.created_at).format('DD MMMM YYYY, HH:mm');
+  },
   validations: {
     title: ['required'],
-    body: ['required'],
+    body: ['required']
   },
-
   validate() {
     if (this.attributes.title != null) {
       this.attributes.title = R.trim(this.attributes.title);
@@ -25,7 +28,8 @@ const Post = bookshelf.Model.extend({
     }
 
     return Checkit(this.validations).run(this.attributes);
-  },
+  }
+
 });
 
 module.exports = Post;

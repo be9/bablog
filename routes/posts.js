@@ -26,15 +26,10 @@ router.post('/create', (req, res, next) => {
   });
 
   post.save().then(() => {
-
     res.redirect('/posts');
-
-  }).catch(Checkit.Error, (e) => {
-
+  }).catch(Checkit.Error, e => {
     res.render('posts/new', { title: 'New post', post, error: e });
-
   }).catch(next);
-
 });
 
 module.exports = router;
