@@ -5,7 +5,8 @@ block content
     .card
       .card-body
         h4.card-title= post.attributes.title
-        .card-subtitle.timemark= post.date_created()
+        .card-subtitle.timemark= 'Created: ' + post.date_created()
+        .card-subtitle.author= 'Author: ' + post.relations.user_owner.attributes.name
         .card-text= post.attributes.body
 
 block sidebar
