@@ -1,5 +1,12 @@
+const environment = (`${process.env.NODE_ENV}` || 'development').trim();
 const express = require('express');
+// express-session должен стоять перед passport иначе будут проблемы с post запросами
+const session = require('express-session');
+const KnexSessionStore = require('connect-session-knex')(session);
+const config = require('./knexfile.js')[environment];
+const knex = require('knex')(config);
 const path = require('path');
+const passport = require('passport');
 // const favicon = require('serve-favicon');
 const logger = require('morgan');
 const cookieParser = require('cookie-parser');
@@ -8,6 +15,7 @@ const sassMiddleware = require('node-sass-middleware');
 
 const index = require('./routes/index');
 const posts = require('./routes/posts');
+const auth = require('./routes/auth');
 
 const moment = require('moment');
 
@@ -34,12 +42,33 @@ app.use(sassMiddleware({
 }));
 app.use(express.static(path.join(__dirname, 'public')));
 
+/**
+* Настройка хранилища для express-session
+*/
+const store = new KnexSessionStore({ knex, tablename: 'sessions' });
+
+// Настройки express сессии для пользователя
+app.use(session({
+  secret: 'testtesttest',
+  resave: true,
+  saveUninitialized: true,
+  cookie: {
+    // Тестовое значение, 60 сек
+    maxAge: 60000
+  },
+  store
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use('/', index);
 app.use('/posts', posts);
+app.use('/auth', auth);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
-  const err = new Error('Not Found');
+  const err = new Error(`${req.url} Not Found`);
   err.status = 404;
   next(err);
 });
